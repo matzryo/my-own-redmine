@@ -20,3 +20,7 @@ services:
       MYSQL_DATABASE: redmine
     volumes:
       - ./my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
+      - db-data:/var/lib/mysql/
+
+volumes:
+  db-data:
