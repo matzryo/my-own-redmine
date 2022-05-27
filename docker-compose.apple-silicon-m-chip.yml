@@ -1,0 +1,9 @@
+services:
+
+  db:
+    # M1 Mac などの Apple Silicon 使用マシンでは、docker pull 時にデフォルトで linux/arm64/v8 プラットフォームのイメージを探しに行く。
+    # mysql には 2022/05 現在 上記プラットフォームのイメージが用意されていないので、 "ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries" となる。
+    # 存在するプラットフォームを明示する。
+    # 例: docker-compose -f docker-compose.yml -f docker-compose.apple-silicon-m-chip.yml pull
+    # ※ 単に docker-compose [COMMAND] では本yml設定は読み込まれない。必要になったら明示して読み込むこと。
+    platform: linux/amd64
