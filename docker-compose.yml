@@ -3,7 +3,8 @@ version: '3.1'
 services:
 
   redmine:
-    image: redmine
+    # バージョン5は2022/03にリリースされたばかり。2022/05時点では、枯れているバージョン4を使用することとする。
+    image: redmine:4
     restart: always
     ports:
       - 8080:3000
