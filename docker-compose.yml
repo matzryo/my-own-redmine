@@ -12,6 +12,8 @@ services:
       REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: example
       REDMINE_SECRET_KEY_BASE: supersecretkey
+    volumes:
+      - redmine-files:/usr/src/redmine/files/
 
   db:
     image: mysql:5.7
@@ -24,4 +26,5 @@ services:
       - db-data:/var/lib/mysql/
 
 volumes:
+  redmine-files:
   db-data:
