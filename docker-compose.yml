@@ -18,4 +18,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: redmine
-      
+    volumes:
+      - ./my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
