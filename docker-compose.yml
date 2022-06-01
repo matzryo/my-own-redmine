@@ -9,9 +9,10 @@ services:
     ports:
       - 8080:3000
     environment:
-      REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: example
-      REDMINE_SECRET_KEY_BASE: supersecretkey
+      # :-, :? などの意味は以下参照 https://docs.docker.com/compose/environment-variables/
+      REDMINE_DB_MYSQL: "${REDMINE_DB_MYSQL:-db}"
+      REDMINE_DB_PASSWORD: "${REDMINE_DB_PASSWORD:?}"
+      REDMINE_SECRET_KEY_BASE: "${REDMINE_SECRET_KEY_BASE}"
     volumes:
       - redmine-files:/usr/src/redmine/files/
 
@@ -19,8 +20,8 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:?}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE:?}"
     volumes:
       - ./my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
       - db-data:/var/lib/mysql/
